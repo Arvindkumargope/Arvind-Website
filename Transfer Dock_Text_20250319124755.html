@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Multi-Tool Website</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #ff9f43;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    textarea, input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: background 0.3s ease;
+    }
+    textarea::placeholder, input::placeholder {
+      color: #ccc;
+    }
+    textarea:focus, input:focus, select:focus {
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+    button {
+      background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+    p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ultimate Multi-Tool Website</h1>
+  </header>
+  <div class="container">
+    <!-- Text to Speech -->
+    <section>
+      <h2>Text to Speech</h2>
+      <textarea id="text-to-speech" placeholder="Enter text to convert to speech"></textarea>
+      <button onclick="speakText()">Convert to Speech</button>
+    </section>
+
+    <!-- File Format Changer -->
+    <section>
+      <h2>File Format Changer</h2>
+      <input type="file" id="file-input">
+      <select id="file-format">
+        <option value="pdf">PDF</option>
+        <option value="txt">TXT</option>
+        <option value="png">PNG</option>
+        <option value="jpg">JPG</option>
+      </select>
+      <button onclick="changeFileFormat()">Change Format and Download</button>
+    </section>
+
+    <!-- App Modder (Placeholder) -->
+    <section>
+      <h2>App Modder</h2>
+      <input type="file" id="app-input" accept=".apk">
+      <button onclick="modApp()">Mod App and Download</button>
+      <p id="mod-result"></p>
+    </section>
+
+    <!-- Word Counter -->
+    <section>
+      <h2>Word Counter</h2>
+      <textarea id="word-counter" placeholder="Enter text to count words"></textarea>
+      <button onclick="countWords()">Count Words</button>
+      <p id="word-count-result"></p>
+    </section>
+
+    <!-- Character Counter -->
+    <section>
+      <h2>Character Counter</h2>
+      <textarea id="char-counter" placeholder="Enter text to count characters"></textarea>
+      <button onclick="countChars()">Count Characters</button>
+      <p id="char-count-result"></p>
+    </section>
+
+    <!-- Base64 Encoder/Decoder -->
+    <section>
+      <h2>Base64 Encoder/Decoder</h2>
+      <textarea id="base64-input" placeholder="Enter text to encode/decode"></textarea>
+      <button onclick="encodeBase64()">Encode</button>
+      <button onclick="decodeBase64()">Decode</button>
+      <p id="base64-result"></p>
+    </section>
+
+    <!-- Password Generator -->
+    <section>
+      <h2>Password Generator</h2>
+      <input type="number" id="password-length" placeholder="Password length" min="6" max="32">
+      <button onclick="generatePassword()">Generate Password</button>
+      <p id="password-result"></p>
+    </section>
+
+    <!-- Lorem Ipsum Generator -->
+    <section>
+      <h2>Lorem Ipsum Generator</h2>
+      <input type="number" id="lorem-length" placeholder="Number of paragraphs" min="1" max="10">
+      <button onclick="generateLorem()">Generate Lorem Ipsum</button>
+      <p id="lorem-result"></p>
+    </section>
+
+    <!-- Color Picker -->
+    <section>
+      <h2>Color Picker</h2>
+      <input type="color" id="color-picker">
+      <p id="color-result"></p>
+    </section>
+
+    <!-- Age Calculator -->
+    <section>
+      <h2>Age Calculator</h2>
+      <input type="date" id="birthdate">
+      <button onclick="calculateAge()">Calculate Age</button>
+      <p id="age-result"></p>
+    </section>
+
+    <!-- BMI Calculator -->
+    <section>
+      <h2>BMI Calculator</h2>
+      <input type="number" id="weight" placeholder="Weight (kg)">
+      <input type="number" id="height" placeholder="Height (cm)">
+      <button onclick="calculateBMI()">Calculate BMI</button>
+      <p id="bmi-result"></p>
+    </section>
+  </div>
+
+  <script>
+    // Text to Speech
+    function speakText() {
+      const text = document.getElementById('text-to-speech').value;
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // File Format Changer
+    function changeFileFormat() {
+      const fileInput = document.getElementById('file-input');
+      const format = document.getElementById('file-format').value;
+
+      if (fileInput.files.length === 0) {
+        alert("Please select a file first.");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const fileData = e.target.result;
+
+        let convertedFile;
+        let fileName = file.name.split('.').slice(0, -1).join('.');
+        let mimeType;
+
+        switch (format) {
+          case 'pdf':
+            convertedFile = new Blob([fileData], { type: 'application/pdf' });
+            fileName += '.pdf';
+            mimeType = 'application/pdf';
+            break;
+          case 'txt':
+            convertedFile = new Blob([fileData], { type: 'text/plain' });
+            fileName += '.txt';
+            mimeType = 'text/plain';
+            break;
+          case 'png':
+            convertedFile = new Blob([fileData], { type: 'image/png' });
+            fileName += '.png';
+            mimeType = 'image/png';
+            break;
+          case 'jpg':
+            convertedFile = new Blob([fileData], { type: 'image/jpeg' });
+            fileName += '.jpg';
+            mimeType = 'image/jpeg';
+            break;
+          default:
+            alert("Unsupported format.");
+            return;
+        }
+
+        // Trigger download
+        const url = URL.createObjectURL(convertedFile);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+
+    // App Modder (Placeholder)
+    function modApp() {
+      const appInput = document.getElementById('app-input');
+      if (appInput.files.length > 0) {
+        const file = appInput.files[0];
+        const fileName = file.name.split('.').slice(0, -1).join('.') + '_modded.apk';
+        const moddedFile = new Blob([file], { type: 'application/vnd.android.package-archive' });
+
+        // Trigger download
+        const url = URL.createObjectURL(moddedFile);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        document.getElementById('mod-result').innerText = "Modded APK downloaded!";
+      } else {
+        alert("Please select an APK file first.");
+      }
+    }
+
+    // Word Counter
+    function countWords() {
+      const text = document.getElementById('word-counter').value;
+      const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+      document.getElementById('word-count-result').innerText = `Word Count: ${wordCount}`;
+    }
+
+    // Character Counter
+    function countChars() {
+      const text = document.getElementById('char-counter').value;
+      document.getElementById('char-count-result').innerText = `Character Count: ${text.length}`;
+    }
+
+    // Base64 Encoder/Decoder
+    function encodeBase64() {
+      const text = document.getElementById('base64-input').value;
+      document.getElementById('base64-result').innerText = btoa(text);
+    }
+    function decodeBase64() {
+      const text = document.getElementById('base64-input').value;
+      document.getElementById('base64-result').innerText = atob(text);
+    }
+
+    // Password Generator
+    function generatePassword() {
+      const length = document.getElementById('password-length').value;
+      const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        password += charset.charAt(Math.floor(Math.random() * charset.length));
+      }
+      document.getElementById('password-result').innerText = `Generated Password: ${password}`;
+    }
+
+    // Lorem Ipsum Generator
+    function generateLorem() {
+      const paragraphs = document.getElementById('lorem-length').value;
+      const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(paragraphs);
+      document.getElementById('lorem-result').innerText = lorem;
+    }
+
+    // Color Picker
+    document.getElementById('color-picker').addEventListener('input', function() {
+      document.getElementById('color-result').innerText = `Selected Color: ${this.value}`;
+    });
+
+    // Age Calculator
+    function calculateAge() {
+      const birthdate = new Date(document.getElementById('birthdate').value);
+      const today = new Date();
+      let age = today.getFullYear() - birthdate.getFullYear();
+      if (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+      document.getElementById('age-result').innerText = `Your Age: ${age}`;
+    }
+
+    // BMI Calculator
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value) / 100;
+      const bmi = (weight / (height * height)).toFixed(2);
+      document.getElementById('bmi-result').innerText = `Your BMI: ${bmi}`;
+    }
+  </script>
+</body>
+</html>
